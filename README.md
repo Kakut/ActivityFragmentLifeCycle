@@ -1,57 +1,10 @@
-# ActivityFragmentLifeCycle
-
-# Amaç
-
-1. Git - GitHub becelerinin arttırılmasını sağlamak.
-2. Fragment kullanımı öğrenmek.
-3. Activity üzerine Fragment'ı ekleme yollarını araştırmak.
-4. Activity Fragment Yaşam Döngüsünde (LifeCycle) eklenme sırasında neler değiştiğini kavramak.
-5. Activity Fragment kullanım mantığının yerleşmesini sağlamak.
-
-# İsterler
-
-1. Projeyi "Fork" ediniz.
-2. Master branch'inden yeni bir branch oluşturunuz.
-3. Branch ismine kendi adınızı ve soyadınızı verin. Örn. ("GökhanÖztürk)
-4. Bir Activity ve XML oluşturun. Activity ve XML oluştururken isimlendirme standartlarına dikkat ediniz.
-5. Activity'nizin içerisine aşağıdaki methodları yazınız - sıralaması önemli değil:
-  * onCreate()
-  * onStart()
-  * onRestoreInstanceState()
-  * onResume()
-  * onPause()
-  * onSaveInstanceState()
-  * onStop()
-  * onDestroy()
-  * onRestart()
-  * onAttachFragment()
-6. Yukarıdaki methodların içerisine Log.e methodunu kullanarak; ilk string'e kendinizin belirlediği bir String TAG,
-ikinci String'e ise method isimlerini yazınız.
-7. Üç adet Fragment ve bu Fragment'lara ait XML dosyalarını oluşturun. İsimlendirme standartlarına dikkat ediniz.
-8. Fragment'ları aşağıdaki ekran görüntüsünde olduğu gibi yerleştiriniz.
-
-![alt text](https://github.com/AndroidEduIO/ActivityFragmentLifeCycle/blob/master/app/src/main/res/drawable/Fragment.PNG)
-
-9. Bu Fragment düzenini sağlarken A ve B Fragment'ını XML üzerinden C Fragment'ını ise Activity içerisinde, ID kullanarak, 
-çalışma zamanında (run time) programmatically olarak ekleyiniz.
-10. Eklediğiniz Fragment'ların içerisine aşağıdaki methodları yazınız - sıralaması önemli değil:
-  * onCreate()
-  * onCreateView()
-  * onActivityCreated()
-  * onStart()
-  * onResume()
-  * onPause()
-  * onStop()
-  * onDestroy()
-
- 11. Yukarıdaki methodların içerisine Log.e methodunu kullanarak; ilk string'e kendinizin belirlediği bir String TAG,
-ikinci String'e ise method isimlerini yazınız.
-12. Log'ları yorumlayarak bir Fragment'ı XML içerisinde eklemek ile Activity içerisinde, ID kullanarak, çalışma zamanında (run time)
-programmatically olarak eklemek arasında nasıl bir fark olduğunu araştırıp, projeniz içerisindeki README.md dosyasının içerisini 
-silerek README.md içerisine bu bilgileri yazınız.
-13. Hangi durumda Fragment, hangi durumda Activity kullanılması gerektiğini yine bu README.md dosyasına yazınız.
-14. Hangi durumda Fragment'ı programmatically, hangi durumda XML içerisinde ekleyeceğimizi yorumlayıp yine README.md içerisine yazınız.
-15. Programmatically yüklemek ile XML içerisinde eklemek arasında bir performans farkı olup olmadığını araştırıp README.md içerisine yazınız.
-16. Yazdığınzı kodları Push'layınız. Ve bu adres üzerindeki ana projeye Pull Request (PR) atınız.
-
-# En başarılı PR proje'ye "orjinal cevap" olarak kabul edilecektir.
+12=)Program çalıştırıldığında android monitörde  loglara bakıldığında, Activity içerisinde, ID kullanarak, çalışma zamanında (run time) programmatically olarak eklenen C Faragmenti işlem önceliği olarak çalışmaktadır. Run time programmatically olarak eklenen fragmentler, XML içerisinden eklenen fragmentlere göre işlem önceliğine sahiptir. Run Time Programmatically olarak eklenen fragmentlerde aktivite çalışırken herhangi bir zaman da etkinliğe ekleme veya kaldırma yapılabilir. Ama XML üzerinden eklenen fragmentler de böyle bir durum söz konusu değildir.
+13=)Aktiviteler,Android platformundaki uygulamaların ana bileşenlerinden biridir. Bir kullanıcının uygulamaya girişindeki göreceği ilk ekrandır.
+Bir Fragmanent, bir aktivite aktivite veya kullanıcı arabiriminin bir bölümünü temsil eder. Çok bölmeli bir UI oluşturmak ve birden fazla aktvivitede bir fragmenti yeniden kullanmak için birden çok fragmenti tek bir aktivitede birleştirebilirsiniz. Bir fragment, kendi yaşam döngüsü olan, kendi girdi olaylarını alan ve aktivite çalışırken eklenebilen veya kaldırılabilen bir aktivitenin modüler bir bölümü olarak düşünülebilir.Avantajı, aktivite ile ilişkili birden çok etkinlik tarafından kullanılabilmesidir.
+Eğer Frame'i sabit içeriği değişen sayfalar oluşturulacaksa, Fragment kullanımı uygulamanın tasarımının daha sağlıklı olmasını sağlayacaktır. Fakat değişken Frame kullanılacaksa Activity kullanımı daha uygun olacaktır. 
+14=)Eğer basit, çok fazla değişim gerektirmeyen, birçok sekmeli uygulama tasarım gerçekleştirmek istiyorsak kodumuzu XML içerisine ekleyerek kullanabilir. Çünkü XML içerisinden eklenen fragmentler üzerinde değişikliğe izin verilmiyor. Ayrıca ekran boyutu veya farklı ekran yönlendirmesi gibi farklı bir cihaz konfigürasyonunun kullanımı için XML içerisinden eklemek sunum için basit bir çözümdür.
+Bunun dışında değişime uğrayan, önceliği yüksek olan uygulamalar tasarımlar gerçekleştirilecek ise Run time programmatically olarak eklemek işimizi kolaylaştıracaktır.
+15=)Programmatically yüklemek ile XML içerisinde eklemek arasındaki farklar :
+Uyumluluk: yaklaşık olarak her ikisi de her yerde geliştiriciler tarafından kullanılır.
+Sürdürülebilirlik: aynı şey hakkında, kullanılmak istenilen fragment sınıfını tanımlamak için android: name özniteliği kullanılır.
+Performans: Run Time ın , bir defalık çalışma süreci biraz daha hızlı olabilir ancak aslında eşittirler.XML'de eklenene parçacıklar değiştirilemez ve kaldıralamaz; bu sınırlandırma dışında istenilen ekleme yöntemi kullanılabilir. 
